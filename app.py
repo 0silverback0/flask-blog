@@ -96,5 +96,23 @@ def show_post(post_id):
 
 @app.route('/posts/<int:post_id>/edit')
 def edit_post(post_id):
+    post = Post.query.get(post_id)
+   
+    return render_template('edit-post.html', post=post)
+
+@app.route('/posts/<int:post_id>/edit', methods=['POST'])
+def edited_post(post_id):
     post_id = post_id
-    return render_template('edit-post.html', post_id=post_id)
+    post = Post.query.get(post_id)
+    post.title = post.title if request.form['title']  == '' else request.form['title']
+    post.content = post.content if request.form['content'] == '' else request.form['content']
+
+    db.session.commit()
+
+    return redirect(f'/posts/{post_id}')
+
+@app.route('/posts/<int:post_id>/delete')
+def delete_post(post_id):
+    Post.query.filter_by(id=post_id).delete()
+    db.session.commit()
+    return redirect('/users')

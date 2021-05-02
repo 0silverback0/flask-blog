@@ -6,9 +6,11 @@ Post Details Page
 <h1>{{post.title}}</h1>
 <p>{{post.content}}</p>
 <p>by {{post.user.get_full_name()}}</p>
-<form action="">
-    <a href="/posts/{{post.id}}"> <button type="button" class="btn btn-outline-primary">cancel</button> </a>
-    <button type="button" class="btn btn-primary">edit</button>
-    <button type="button" class="btn btn-danger">delete</button>
+
+<form action="/posts/{{post.id}}/delete">
+    <a href="/users/{{post.user.id}}"> <button type="button" class="btn btn-outline-primary">cancel</button> </a>
+    <a href="/posts/{{post.id}}/edit"> <button type="button" class="btn btn-primary">edit</button> </a>
+    <button type="submit" class="btn btn-danger">delete</button>
 </form>
+
 {% endblock %}
