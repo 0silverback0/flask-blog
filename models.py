@@ -50,6 +50,7 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     user = db.relationship('User', backref='post')
+    tags = db.relationship('Tags', secondary='post_tag', backref='post')
 
     def __repr__(self):
         p = self
@@ -58,4 +59,19 @@ class Post(db.Model):
     def get_all_post(user_id):
         posts = Post.query.filter(Post.user_id == user_id).all()
         return posts
-    
+
+class Tags(db.Model):
+    """tags table"""
+    __tablename__ = 'tags'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Text, unique=True)
+
+class PostTag(db.Model):
+    """post tag table"""
+    __tablename__ = 'post_tag'
+
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), primary_key=True, nullable=False)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True, nullable=False)
+
+    tags = db.relationship('Tags', backref='posts')    

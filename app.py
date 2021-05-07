@@ -2,7 +2,7 @@
 
 from flask import Flask, request, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
-from models import db, connect_db, User, Post, today
+from models import db, connect_db, User, Post, Tags, PostTag, today
 
 
 app = Flask(__name__)
@@ -116,3 +116,9 @@ def delete_post(post_id):
     Post.query.filter_by(id=post_id).delete()
     db.session.commit()
     return redirect('/users')
+
+@app.route('/tags')
+def tag_list():
+    tags = Tags.query.all()
+
+    return render_template('tag-list.html', tags=tags)
