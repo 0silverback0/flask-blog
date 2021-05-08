@@ -65,7 +65,7 @@ class Tags(db.Model):
     __tablename__ = 'tags'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Text, unique=True)
+    name = db.Column(db.Text, nullable=False, unique=True)
 
 class PostTag(db.Model):
     """post tag table"""

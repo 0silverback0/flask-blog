@@ -122,3 +122,34 @@ def tag_list():
     tags = Tags.query.all()
 
     return render_template('tag-list.html', tags=tags)
+
+@app.route('/tags/<int:tag_id>')
+def tag_details(tag_id):
+    tag = Tags.query.get(tag_id)
+    return render_template('tag-detail.html', tag=tag)
+
+@app.route('/tags/new')
+def add_new_tag():
+    return render_template('new-tag.html')
+
+@app.route('/tags/new', methods=['POST'])
+def process_new_tag():
+    new_tag = request.form['tag']
+
+    new_Tag = Tags(name=new_tag)
+
+    db.session.add(new_Tag)
+    db.session.commit()
+
+    return redirect('/tags')
+
+# @app.route('/tags/<int:tag_id>/edit')
+# def edit_tag_form(tag_id):
+#     tag_id = tag_id
+
+# @app.route('/tags/<int:tag_id>/edit', methods=['POST'])
+
+
+
+
+

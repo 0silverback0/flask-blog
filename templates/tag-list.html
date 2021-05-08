@@ -8,6 +8,6 @@ Tag List
 {% for tag in tags %}
 <a href="{{tag.id}}"> <li>{{tag.name}}</li> </a>
 {%endfor%}
-<button class="btn btn-primary mt-3">Add Tag</button>
+<a href="/tags/new"> <button class="btn btn-primary mt-3">Add Tag</button> </a>
 </div>
 {% endblock %}
