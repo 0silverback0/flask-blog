@@ -11,8 +11,20 @@ Add Post
     <label for="title">Title</label>
     <input type="text" placeholder="title" id="title" name="title" class="form-control mb-3">
 
+    
     <label for="content">Content</label>
-    <textarea name="content" id="content" name="content" cols="60" rows="5" class="mb-5"></textarea>
+    <textarea id="content" name="content" cols="60" rows="5" class="mb-5"></textarea>
+    
+    
+    {% for tag in all_tags %}
+    <div class="">
+    
+    <input type="checkbox" value="{{tag.id}}" id="{{tag.name}}" name="tag" class="d-inline">
+    <label for="{{tag.name}}" class="d-inline">{{tag.name}}</label>
+</div>
+    {% endfor %}
+    
+    
 
     <a href="/users/{{user.id}}"><button class="btn btn-outline-info" type="button">Cancel</button></a>
     <button class="btn btn-success" type="submit">Add</button>

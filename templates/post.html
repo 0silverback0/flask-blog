@@ -6,6 +6,10 @@ Post Details Page
 <h1>{{post.title}}</h1>
 <p>{{post.content}}</p>
 <p>by {{post.user.get_full_name()}}</p>
+<h6>Tags:</h6> 
+    {% for tag in tags %}
+    <span class="badge badge-primary">{{tag.name}}</span>
+    {% endfor %}
 
 <form action="/posts/{{post.id}}/delete">
     <a href="/users/{{post.user.id}}"> <button type="button" class="btn btn-outline-primary">cancel</button> </a>

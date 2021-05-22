@@ -4,6 +4,7 @@ Edit Post
 {% endblock %}
 {% block stuff %}
 
+<div class="container">
 <h1>Edit Post</h1>
 <form action="/posts/{{post.id}}/edit" method="POST">
     <label for="title">Title</label>
@@ -11,8 +12,16 @@ Edit Post
     <label for="content">Post Content</label>
     <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
 
+    {% for tag in all_tags %}
+    <div class="">
+    
+    <input type="checkbox" value="{{tag.id}}" id="{{tag.name}}" name="tag" class="d-inline">
+    <label for="{{tag.name}}" class="d-inline">{{tag.name}}</label>
+</div>
+    {% endfor %}
+    
     <a href="/users/{{post.user.id}}"> <button type="button" class="btn btn-outline-primary" formaction="">Cancel</button> </a>
     <button type="submit" class="btn btn-primary">Edit</button>
 </form>
-
+</div>
 {% endblock %}

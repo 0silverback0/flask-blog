@@ -3,4 +3,12 @@
 Tag Details
 {% endblock %}
 {% block stuff%}
-<h1>{{tag.name}} details</h1>
+<h1>{{tag.name}}</h1>
+<ul>
+{% for post in post %}
+<a href="/posts/{{post.id}}"> <li>{{post.title}}</li> </a>
+{% endfor %}
+<a href="/tags"> <button class="btn btn-info">go back</button> </a>
+<a href="/tags/{{tag.id}}/edit"> <button class="btn btn-primary">edit</button> </a>
+<a href="/tags/{{tag.id}}/delete"> <button class="btn btn-danger">Delete</button> </a>
+{% endblock %}
